@@ -12,9 +12,9 @@
 
 #include <boost/simd/toolbox/memory/functions/load.hpp>
 #include <boost/simd/toolbox/memory/functions/details/load.hpp>
+#include <boost/simd/memory/iterator_category.hpp>
 #include <boost/simd/sdk/functor/preprocessor/call.hpp>
 #include <boost/simd/sdk/functor/hierarchy.hpp>
-#include <boost/simd/memory/iterator_category.hpp>
 #include <boost/simd/sdk/meta/iterate.hpp>
 #include <boost/dispatch/meta/mpl.hpp>
 #include <boost/config.hpp>
@@ -55,12 +55,12 @@ namespace boost { namespace simd { namespace ext
     operator()(const A0& a0, A1 a1, const A2&, const A3&) const
     {
       A0 that = a0;
-      std::advance(that,a1+A3::value);
+      std::advance(that,a1);
       return *that;
     }
   };
 
-  // fusion sequence
+  /// INTERNAL ONLY
   BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::load_, tag::cpu_
                                     , (A0)(A1)(A2)
                                     , (fusion_sequence_<A0>)

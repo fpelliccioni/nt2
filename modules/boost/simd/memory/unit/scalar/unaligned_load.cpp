@@ -25,65 +25,35 @@ NT2_TEST_CASE_TPL(unaligned_load, BOOST_SIMD_TYPES)
 
   T data[5] = {0,1,2,3,4};
 
-  NT2_TEST_EQUAL( (unaligned_load<T,-4>(&data[0],4)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-4>(&data[0],5)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-4>(&data[0],6)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-4>(&data[0],7)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-4>(&data[0],8)), T(4) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-4,4)), T(0) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-4,5)), T(1) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-4,6)), T(2) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-4,7)), T(3) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-4,8)), T(4) );
 
-  NT2_TEST_EQUAL( (unaligned_load<T,-3>(&data[0],3)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-3>(&data[0],4)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-3>(&data[0],5)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-3>(&data[0],6)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-3>(&data[0],7)), T(4) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-3,3)), T(0) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-3,4)), T(1) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-3,5)), T(2) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-3,6)), T(3) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-3,7)), T(4) );
 
-  NT2_TEST_EQUAL( (unaligned_load<T,-2>(&data[0],2)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-2>(&data[0],3)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-2>(&data[0],4)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-2>(&data[0],5)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-2>(&data[0],6)), T(4) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-2,2)), T(0) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-2,3)), T(1) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-2,4)), T(2) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-2,5)), T(3) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-2,6)), T(4) );
 
-  NT2_TEST_EQUAL( (unaligned_load<T,-1>(&data[0],1)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-1>(&data[0],2)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-1>(&data[0],3)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-1>(&data[0],4)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,-1>(&data[0],5)), T(4) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-1,1)), T(0) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-1,2)), T(1) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-1,3)), T(2) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-1,4)), T(3) );
+  NT2_TEST_EQUAL( (unaligned_load<T>(&data[0]-1,5)), T(4) );
 
   NT2_TEST_EQUAL( unaligned_load<T>(&data[0],0), T(0) );
   NT2_TEST_EQUAL( unaligned_load<T>(&data[0],1), T(1) );
   NT2_TEST_EQUAL( unaligned_load<T>(&data[0],2), T(2) );
   NT2_TEST_EQUAL( unaligned_load<T>(&data[0],3), T(3) );
   NT2_TEST_EQUAL( unaligned_load<T>(&data[0],4), T(4) );
-
-  NT2_TEST_EQUAL( (unaligned_load<T,0>(&data[0],0)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,0>(&data[0],1)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,0>(&data[0],2)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,0>(&data[0],3)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,0>(&data[0],4)), T(4) );
-
-  NT2_TEST_EQUAL( (unaligned_load<T,1>(&data[0],-1)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,1>(&data[0],0)) , T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,1>(&data[0],1)) , T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,1>(&data[0],2)) , T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,1>(&data[0],3)) , T(4) );
-
-  NT2_TEST_EQUAL( (unaligned_load<T,2>(&data[0],-2)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,2>(&data[0],-1)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,2>(&data[0],0)) , T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,2>(&data[0],1)) , T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,2>(&data[0],2)) , T(4) );
-
-  NT2_TEST_EQUAL( (unaligned_load<T,3>(&data[0],-3)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,3>(&data[0],-2)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,3>(&data[0],-1)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,3>(&data[0],0)) , T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,3>(&data[0],1)) , T(4) );
-
-  NT2_TEST_EQUAL( (unaligned_load<T,4>(&data[0],-4)), T(0) );
-  NT2_TEST_EQUAL( (unaligned_load<T,4>(&data[0],-3)), T(1) );
-  NT2_TEST_EQUAL( (unaligned_load<T,4>(&data[0],-2)), T(2) );
-  NT2_TEST_EQUAL( (unaligned_load<T,4>(&data[0],-1)), T(3) );
-  NT2_TEST_EQUAL( (unaligned_load<T,4>(&data[0],0)) , T(4) );
 }
 
 NT2_TEST_CASE( unaligned_load_sequence )
@@ -98,9 +68,10 @@ NT2_TEST_CASE( unaligned_load_sequence )
   float  f = 1.8f;
   char   c = 'a';
 
-  boost::fusion::vector<double,float,char> v;
+  typedef boost::fusion::vector<double,float,char> type;
+  type v;
 
-  v = unaligned_load< boost::fusion::vector<double,float,char> >(boost::fusion::make_vector(&d, &f, &c), 0);
+  v = unaligned_load< type >(boost::fusion::make_vector(&d, &f, &c), 0);
 
   NT2_TEST_EQUAL(boost::fusion::at_c<0>(v) , d);
   NT2_TEST_EQUAL(boost::fusion::at_c<1>(v) , f);
@@ -117,10 +88,10 @@ NT2_TEST_CASE( unaligned_load_pointer_of_sequence )
   float  f = 1.8f;
   char   c = 'a';
 
-  boost::fusion::vector<double,float,char> s(d,f,c);
-  boost::fusion::vector<double,float,char> v;
+  typedef boost::fusion::vector<double,float,char> type;
+  type v, s(d,f,c);
 
-  v = unaligned_load< boost::fusion::vector<double,float,char> >(&s, 0);
+  v = unaligned_load< type >(&s, 0);
 
   NT2_TEST_EQUAL(boost::fusion::at_c<0>(v) , d);
   NT2_TEST_EQUAL(boost::fusion::at_c<1>(v) , f);

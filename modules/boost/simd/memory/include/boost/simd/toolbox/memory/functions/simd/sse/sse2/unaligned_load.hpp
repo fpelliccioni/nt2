@@ -10,9 +10,6 @@
 #define BOOST_SIMD_TOOLBOX_MEMORY_FUNCTIONS_SIMD_SSE_SSE2_UNALIGNED_LOAD_HPP_INCLUDED
 #ifdef BOOST_SIMD_HAS_SSE2_SUPPORT
 
-////////////////////////////////////////////////////////////////////////////////
-// unaligned_load for SSE2 SIMD types
-////////////////////////////////////////////////////////////////////////////////
 #include <boost/simd/toolbox/memory/functions/unaligned_load.hpp>
 #include <boost/dispatch/meta/mpl.hpp>
 #include <boost/simd/sdk/simd/category.hpp>
@@ -20,17 +17,19 @@
 #include <boost/simd/sdk/meta/cardinal_of.hpp>
 #include <boost/dispatch/functor/preprocessor/call.hpp>
 
-//==============================================================================
-// unaligned_load vector of double
-//==============================================================================
 namespace boost { namespace simd { namespace ext
 {
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)(A2)
-                            , (iterator_< scalar_< double_<A0> > >)
-                              (scalar_< fundamental_<A1> >)
-                              ((target_< simd_< double_<A2>, boost::simd::tag::sse_ > >))
-                            )
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)(A2)
+                                    , (iterator_< scalar_< double_<A0> > >)
+                                      (scalar_< fundamental_<A1> >)
+                                      ((target_< simd_< double_<A2>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A2::type result_type;
     inline result_type operator()(const A0& a0, const A1& a1, const A2&)const
@@ -38,15 +37,17 @@ namespace boost { namespace simd { namespace ext
       return _mm_loadu_pd(a0+a1);
     }
   };
-} } }
 
-namespace boost { namespace simd { namespace ext
-{
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)
-                            , (iterator_< scalar_< double_<A0> > >)
-                              ((target_< simd_< double_<A1>, boost::simd::tag::sse_ > >))
-                            )
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)
+                                    , (iterator_< scalar_< double_<A0> > >)
+                                      ((target_< simd_< double_<A1>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A1::type result_type;
     inline result_type operator()(const A0& a0, const A1&)const
@@ -54,19 +55,18 @@ namespace boost { namespace simd { namespace ext
       return _mm_loadu_pd(a0);
     }
   };
-} } }
 
-//==============================================================================
-// unaligned_load vector of float
-//==============================================================================
-namespace boost { namespace simd { namespace ext
-{
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)(A2)
-                            , (iterator_< scalar_< single_<A0> > >)
-                              (scalar_< fundamental_<A1> >)
-                              ((target_< simd_< single_<A2>, boost::simd::tag::sse_ > >))
-                            )
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)(A2)
+                                    , (iterator_< scalar_< single_<A0> > >)
+                                      (scalar_< fundamental_<A1> >)
+                                      ((target_< simd_< single_<A2>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A2::type result_type;
     inline result_type operator()(const A0& a0, const A1& a1, const A2&)const
@@ -74,15 +74,17 @@ namespace boost { namespace simd { namespace ext
       return _mm_loadu_ps(a0+a1);
     }
   };
-} } }
 
-namespace boost { namespace simd { namespace ext
-{
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)
-                            , (iterator_< scalar_< single_<A0> > >)
-                              ((target_< simd_< single_<A1>, boost::simd::tag::sse_ > >))
-                            )
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)
+                                    , (iterator_< scalar_< single_<A0> > >)
+                                      ((target_< simd_< single_<A1>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A1::type result_type;
     inline result_type operator()(const A0& a0, const A1&)const
@@ -90,19 +92,19 @@ namespace boost { namespace simd { namespace ext
       return _mm_loadu_ps(a0);
     }
   };
-} } }
 
-//==============================================================================
-// unaligned_load vector of integer
-//==============================================================================
-namespace boost { namespace simd { namespace ext
-{
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)(A2)
-                            , (iterator_< scalar_< integer_<A0> > >)
-                              (scalar_< fundamental_<A1> >)
-                              ((target_< simd_< integer_<A2>, boost::simd::tag::sse_ > >))
-                            )
+
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)(A2)
+                                    , (iterator_< scalar_< integer_<A0> > >)
+                                      (scalar_< fundamental_<A1> >)
+                                      ((target_< simd_< integer_<A2>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A2::type result_type;
     inline result_type operator()(const A0& a0, const A1& a1, const A2&)const
@@ -110,15 +112,17 @@ namespace boost { namespace simd { namespace ext
       return _mm_loadu_si128(reinterpret_cast<__m128i const*>(a0+a1));
     }
   };
-} } }
 
-namespace boost { namespace simd { namespace ext
-{
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION( boost::simd::tag::unaligned_load_ , boost::simd::tag::sse2_
-                            , (A0)(A1)
-                            , (iterator_< scalar_< integer_<A0> > >)
-                              ((target_< simd_< integer_<A1>, boost::simd::tag::sse_ > >))
-                            )
+  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
+                                    , boost::simd::tag::sse2_
+                                    , (A0)(A1)
+                                    , (iterator_< scalar_< integer_<A0> > >)
+                                      ((target_< simd_< integer_<A1>
+                                                      , boost::simd::tag::sse_
+                                                      >
+                                                >
+                                      ))
+                                    )
   {
     typedef typename A1::type result_type;
     inline result_type operator()(const A0& a0, const A1&)const

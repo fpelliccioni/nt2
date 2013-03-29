@@ -12,60 +12,27 @@
 
 #include <boost/simd/toolbox/memory/functions/unaligned_load.hpp>
 #include <boost/simd/toolbox/memory/functions/scalar/load.hpp>
+#include <boost/simd/sdk/functor/preprocessor/dispatch.hpp>
 
 namespace boost { namespace simd { namespace ext
 {
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
-                                    , tag::cpu_
-                                    , (A0)(A1)(A2)
-                                    , (iterator_< unspecified_<A0> >)
-                                      (scalar_< fundamental_<A1> >)
-                                      (target_< unspecified_<A2> >)
-                                    )
-  {
-    typedef typename A2::type result_type;
+  BOOST_SIMD_REGISTER_DISPATCH_TO ( boost::simd::tag::unaligned_load_
+                                  , tag::cpu_
+                                  , (A0)(A1)(A2)
+                                  , (iterator_< unspecified_<A0> >)
+                                    (scalar_< fundamental_<A1> >)
+                                    (target_< unspecified_<A2> >)
+                                  , functor<boost::simd::tag::load_>
+                                  );
 
-    BOOST_FORCEINLINE result_type
-    operator()(const A0& a0, A1 a1, const A2&) const
-    {
-      return load<result_type>(a0,a1);
-    }
-  };
-
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
-                                    , tag::cpu_
-                                    , (A0)(A1)(A2)(A3)
-                                    , (iterator_< unspecified_<A0> >)
-                                      (scalar_< fundamental_<A1> >)
-                                      (target_< unspecified_<A2> >)
-                                      (mpl_integral_< scalar_< integer_<A3> > >)
-                                    )
-  {
-    typedef typename A2::type result_type;
-
-    BOOST_FORCEINLINE result_type
-    operator()(const A0& a0, A1 a1, const A2&, const A3&) const
-    {
-      return load<result_type, A3::value>(a0,a1);
-    }
-  };
-
-  BOOST_SIMD_FUNCTOR_IMPLEMENTATION ( boost::simd::tag::unaligned_load_
-                                    , tag::cpu_
-                                    , (A0)(A1)(A2)
-                                    , (fusion_sequence_<A0>)
-                                      (generic_< integer_<A1> >)
-                                      ((target_< fusion_sequence_<A2> >))
-                                    )
-  {
-    typedef typename A2::type result_type;
-
-    BOOST_FORCEINLINE result_type
-    operator()(const A0& a0, const A1& a1, const A2&) const
-    {
-      return load<result_type>(a0,a1);
-    }
-  };
+  BOOST_SIMD_REGISTER_DISPATCH_TO ( boost::simd::tag::unaligned_load_
+                                  , tag::cpu_
+                                  , (A0)(A1)(A2)
+                                  , (fusion_sequence_<A0>)
+                                    (generic_< integer_<A1> >)
+                                    ((target_< fusion_sequence_<A2> >))
+                                  , functor<boost::simd::tag::load_>
+                                  );
 } } }
 
 #endif

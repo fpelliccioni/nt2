@@ -11,7 +11,7 @@
 
 #include <boost/simd/memory/config.hpp>
 #include <boost/simd/memory/details/aligned_stash.hpp>
-#include <boost/dispatch/details/ignore_unused.hpp>
+#include <boost/dispatch/meta/ignore_unused.hpp>
 #include <boost/dispatch/attributes.hpp>
 #include <new>
 

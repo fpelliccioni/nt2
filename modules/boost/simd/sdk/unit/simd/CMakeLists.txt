@@ -28,7 +28,6 @@ SET( SOURCES
     sign_of.cpp
     transform.cpp
     algorithm.cpp
-    range.cpp
     upgrade.cpp
    )
 
