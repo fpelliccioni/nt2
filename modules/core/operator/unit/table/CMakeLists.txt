@@ -9,8 +9,9 @@
 
 SET( SOURCES
   cast.cpp
-  subscript.cpp
+  cons.cpp
   erase.cpp
+  subscript.cpp
   )
 
 nt2_module_add_tests(core.operator.table.unit ${SOURCES})
